@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMaster - Belajar Pemrograman & Algoritma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #9b59b6;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: var(--light);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        header {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 5% 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .learning-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .tab-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .tab-content {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 400px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-editor {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .editor-header {
+            background: #333;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .editor-actions button {
+            background: #444;
+            border: none;
+            color: #ddd;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .editor-actions button:hover {
+            background: #555;
+        }
+        
+        .editor-body {
+            padding: 15px;
+            min-height: 200px;
+        }
+        
+        textarea.code-area {
+            width: 100%;
+            height: 200px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+            resize: vertical;
+            outline: none;
+        }
+        
+        .editor-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 15px;
+            background: #333;
+        }
+        
+        .run-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .run-button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+            margin-top: 20px;
+            overflow: auto;
+        }
+        
+        .practice-section {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 5%;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .practice-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .practice-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .practice-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .practice-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .practice-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .challenge {
+            background: rgba(52, 152, 219, 0.15);
+        }
+        
+        .algorithm {
+            background: rgba(46, 204, 113, 0.15);
+        }
+        
+        .design {
+            background: rgba(155, 89, 182, 0.15);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>CodeMaster</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Beranda</a>
+                <a href="#"><i class="fas fa-book"></i> Materi</a>
+                <a href="#"><i class="fas fa-code"></i> Praktek</a>
+                <a href="#"><i class="fas fa-graduation-cap"></i> Kelas</a>
+                <a href="#"><i class="fas fa-user"></i> Profil</a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h2>Belajar Pemrograman, Algoritma & Desain</h2>
+        <p>Tingkatkan skill coding Anda dengan platform interaktif yang menyediakan materi pembelajaran, editor kode langsung, dan tantangan praktis untuk mengasah kemampuan pemrograman dan algoritma Anda.</p>
+        <button class="cta-button">Mulai Belajar Sekarang</button>
+    </section>
+    
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Belajar Langsung Praktek</h3>
+            <p>Pelajari konsep pemrograman dengan editor kode langsung di browser. Tidak perlu instalasi, langsung praktek!</p>
+        </div>
+        
+        <div class="feature-card">
+            <i class="fas fa-project-diagram"></i>
+            <h3>Visualisasi Algoritma</h3>
+            <p>Pahami algoritma kompleks dengan visualisasi interaktif yang membuat konsep lebih mudah dimengerti.</p>
+        </div>
+        
+        <div class="feature-card">
+            <i class="fas fa-palette"></i>
+            <h3>Desain Responsif</h3>
+            <p>Belajar prinsip desain web modern dengan contoh langsung yang bisa Anda modifikasi dan lihat hasilnya.</p>
+        </div>
+    </section>
+    
+    <section class="learning-section">
+        <h2 class="section-title">Praktek Langsung</h2>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="html">HTML/CSS</button>
+            <button class="tab-button" data-tab="js">JavaScript</button>
+            <button class="tab-button" data-tab="algo">Algoritma</button>
+        </div>
+        
+        <div class="tab-content active" id="html-tab">
+            <h3>Membuat Layout Responsif</h3>
+            <p>Praktekkan membuat layout responsif menggunakan Flexbox. Ubah kode di bawah dan lihat hasilnya!</p>
+            
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-title">index.html</div>
+                    <div class="editor-actions">
+                        <button><i class="fas fa-redo"></i></button>
+                        <button><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="editor-body">
+                    <textarea class="code-area">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1 1 200px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="box"&gt;Box 1&lt;/div&gt;
+        &lt;div class="box"&gt;Box 2&lt;/div&gt;
+        &lt;div class="box"&gt;Box 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                </div>
+                <div class="editor-footer">
+                    <button class="run-button">Jalankan Kode</button>
+                </div>
+            </div>
+            
+            <div class="output">
+                <h4>Hasil:</h4>
+                <iframe id="html-output" style="width: 100%; height: 200px; background: white; border: none; border-radius: 5px;"></iframe>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="js-tab">
+            <h3>Manipulasi DOM dengan JavaScript</h3>
+            <p>Pelajari cara memanipulasi elemen HTML menggunakan JavaScript.</p>
+            
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-title">script.js</div>
+                    <div class="editor-actions">
+                        <button><i class="fas fa-redo"></i></button>
+                        <button><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="editor-body">
+                    <textarea class="code-area">// Mengubah teks pada elemen
+document.getElementById('demo').innerHTML = "Halo, Dunia!";
+
+// Mengubah gaya elemen
+document.getElementById('demo').style.color = "blue";
+document.getElementById('demo').style.fontSize = "24px";
+
+// Menambahkan event listener
+document.getElementById('btn').addEventListener('click', function() {
+    alert('Tombol diklik!');
+});</textarea>
+                </div>
+                <div class="editor-footer">
+                    <button class="run-button">Jalankan Kode</button>
+                </div>
+            </div>
+            
+            <div class="output">
+                <h4>Hasil:</h4>
+                <div id="js-output" style="padding: 20px; background: white; color: black; border-radius: 5px;">
+                    <p id="demo">Teks awal akan diubah oleh JavaScript.</p>
+                    <button id="btn" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Klik Saya</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="algo-tab">
+            <h3>Visualisasi Algoritma Sorting</h3>
+            <p>Lihat bagaimana algoritma Bubble Sort bekerja dengan visualisasi interaktif.</p>
+            
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-title">bubbleSort.js</div>
+                    <div class="editor-actions">
+                        <button><i class="fas fa-redo"></i></button>
+                        <button><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="editor-body">
+                    <textarea class="code-area">function bubbleSort(arr) {
+    let len = arr.length;
+    for (let i = 0; i < len; i++) {
+        for (let j = 0; j < len - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Tukar elemen
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                
+                // Visualisasi
+                visualize(arr);
+            }
+        }
+    }
+    return arr;
+}
+
+// Array acak untuk diurutkan
+const numbers = [5, 3, 8, 4, 2];
+bubbleSort(numbers);</textarea>
+                </div>
+                <div class="editor-footer">
+                    <button class="run-button">Jalankan Algoritma</button>
+                </div>
+            </div>
+            
+            <div class="output">
+                <h4>Visualisasi Bubble Sort:</h4>
+                <div id="visualization" style="display: flex; gap: 5px; height: 100px; align-items: flex-end; justify-content: center; margin-top: 20px;">
+                    <div style="background: #3498db; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white;">5</div>
+                    <div style="background: #3498db; width: 30px; height: 50px; display: flex; align-items: center; justify-content: center; color: white;">3</div>
+                    <div style="background: #3498db; width: 30px; height: 80px; display: flex; align-items: center; justify-content: center; color: white;">8</div>
+                    <div style="background: #3498db; width: 30px; height: 40px; display: flex; align-items: center; justify-content: center; color: white;">4</div>
+                    <div style="background: #3498db; width: 30px; height: 20px; display: flex; align-items: center; justify-content: center; color: white;">2</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="practice-section">
+        <h2 class="section-title">Praktek & Tantangan</h2>
+        
+        <div class="practice-grid">
+            <div class="practice-card challenge">
+                <i class="fas fa-tasks"></i>
+                <h3>Challenge Harian</h3>
+                <p>Tantang diri Anda dengan problem coding setiap hari. Tingkatkan kemampuan pemecahan masalah Anda.</p>
+            </div>
+            
+            <div class="practice-card algorithm">
+                <i class="fas fa-sort-amount-up"></i>
+                <h3>Struktur Data</h3>
+                <p>Pelajari implementasi struktur data seperti linked list, tree, graph, dan hash table dengan visualisasi.</p>
+            </div>
+            
+            <div class="practice-card design">
+                <i class="fas fa-object-group"></i>
+                <h3>Desain UI/UX</h3>
+                <p>Praktekkan prinsip desain antarmuka pengguna dan pengalaman pengguna dengan studi kasus nyata.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2023 CodeMaster. Platform Belajar Pemrograman Interaktif.</p>
+        <p>Bangun karir tech Anda dengan fundamental yang kuat!</p>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // HTML Editor Run functionality
+        document.querySelector('#html-tab .run-button').addEventListener('click', () => {
+            const htmlCode = document.querySelector('#html-tab .code-area').value;
+            const outputFrame = document.getElementById('html-output');
+            outputFrame.contentDocument.body.innerHTML = htmlCode;
+        });
+        
+        // JavaScript Editor Run functionality
+        document.querySelector('#js-tab .run-button').addEventListener('click', () => {
+            const jsCode = document.querySelector('#js-tab .code-area').value;
+            try {
+                eval(jsCode);
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        });
+        
+        // Bubble Sort Visualization
+        document.querySelector('#algo-tab .run-button').addEventListener('click', () => {
+            const visualization = document.getElementById('visualization');
+            const bars = visualization.querySelectorAll('div');
+            const heights = [30, 50, 80, 40, 20];
+            const values = [5, 3, 8, 4, 2];
+            
+            // Reset visualization
+            bars.forEach((bar, index) => {
+                bar.style.height = heights[index] + 'px';
+                bar.textContent = values[index];
+                bar.style.background = '#3498db';
+            });
+            
+            // Animate bubble sort
+            let i = 0;
+            let j = 0;
+            const len = values.length;
+            
+            const sortInterval = setInterval(() => {
+                if (i < len) {
+                    if (j < len - i - 1) {
+                        // Highlight current bars being compared
+                        bars[j].style.background = '#e74c3c';
+                        bars[j+1].style.background = '#e74c3c';
+                        
+                        setTimeout(() => {
+                            if (values[j] > values[j+1]) {
+                                // Swap values
+                                [values[j], values[j+1]] = [values[j+1], values[j]];
+                                [heights[j], heights[j+1]] = [heights[j+1], heights[j]];
+                                
+                                // Update visualization
+                                bars[j].style.height = heights[j] + 'px';
+                                bars[j].textContent = values[j];
+                                bars[j+1].style.height = heights[j+1] + 'px';
+                                bars[j+1].textContent = values[j+1];
+                            }
+                            
+                            // Reset color
+                            bars[j].style.background = '#3498db';
+                            bars[j+1].style.background = '#3498db';
+                            
+                            j++;
+                        }, 800);
+                    } else {
+                        // Mark sorted element
+                        bars[len - i - 1].style.background = '#2ecc71';
+                        i++;
+                        j = 0;
+                    }
+                } else {
+                    clearInterval(sortInterval);
+                    // Mark all as sorted
+                    bars.forEach(bar => {
+                        bar.style.background = '#2ecc71';
+                    });
+                }
+            }, 1000);
+        });
+        
+        // Initialize HTML output
+        document.querySelector('#html-tab .run-button').click();
+    </script>
+</body>
+</html>
